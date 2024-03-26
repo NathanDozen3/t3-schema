@@ -1,0 +1,31 @@
+.t3-qa-item {
+    margin: 0 -20px;
+    padding: 20px 20px;
+}
+.t3-qa-item:nth-of-type(2n),
+.t3-qa-item:nth-of-type(2n) input {
+    background-color: #f9f9f9;
+}
+#t3-faq-add {
+    text-align: right;
+}
+.wp-core-ui .button.t3-qa-item-add {
+    margin-top: 16px;
+}
+.edit-post-meta-boxes-area #poststuff #t3-schema h2.hndle {
+    color: #1e1e1e;
+    font-size: inherit;
+    font-weight: 500;
+    padding: 0 16px;
+}
+
+.t3-sortable-list {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+.t3-sortable-list .t3-qa-item {
+    cursor: move;
+  }
+.t3-qa-item.dragging {
+    opacity: 0.6;
+}

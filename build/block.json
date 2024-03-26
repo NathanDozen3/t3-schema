@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "t3/faq",
+  "version": "1.0.0",
+  "title": "T3 FAQ",
+  "category": "widgets",
+  "icon": "text",
+  "description": "Add FAQ accordion from schema data.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "multiple": false
+  },
+  "attributes": {
+    "button__background_color": {
+      "type": "string",
+      "default": "#86b7fe"
+    },
+    "button__background_color__active": {
+      "type": "string"
+    },
+    "body__color": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "body__background_color": {
+      "type": "string",
+      "default": "#ffffff"
+    }
+  },
+  "textdomain": "t3-faq",
+  "editorScript": [
+    "file:./index.js",
+    "t3-schema-view"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

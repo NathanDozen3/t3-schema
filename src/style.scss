@@ -1,0 +1,84 @@
+.wp-block-t3-faq {
+
+	--t3--faq--border-radius: 5px;
+	--t3--faq--border-width: 1px;
+	--t3--faq--button--icon-width: 20px;
+	--t3--faq--font-size--large: 1.75rem;
+	--t3--faq--font-size--normal: 1rem;
+	--t3--faq--padding: 1rem;
+	--t3--faq--transition: all 0.3s ease-in-out;
+
+	&-item {
+		border: var(--t3--faq--border-width) solid var(--t3--faq--button--background-color);
+		border-collapse: collapse;
+
+		&:first-of-type {
+			border-top-left-radius: var(--t3--faq--border-radius);
+			border-top-right-radius: var(--t3--faq--border-radius);
+
+			button {
+				border-top-left-radius: var(--t3--faq--border-radius);
+				border-top-right-radius: var(--t3--faq--border-radius);
+			}
+		}
+		&:last-of-type {
+			border-bottom-left-radius: var(--t3--faq--border-radius);
+			border-bottom-right-radius: var(--t3--faq--border-radius);
+		}
+		&:not(:first-of-type) {
+			border-top: 0;
+		}
+	}
+	&-header {
+		margin: 0;
+	}
+	&-button {
+		background-color: var(--t3--faq--button--background-color);
+		border: none;
+		color: var(--t3--faq--button--color);
+		cursor: pointer;
+		display: flex;
+		font-size: var(--t3--faq--font-size--large);
+		padding: var(--t3--faq--padding);
+		text-align: left;
+		transition: var(--t3--faq--transition);
+		width: 100%;
+
+		&:after {
+			align-self: center;
+			background-color: var(--t3--faq--button--color);
+			background-repeat: no-repeat;
+			content: "";
+			flex-shrink: 0;
+			height: var(--t3--faq--button--icon-width);
+			margin-left: auto;
+			mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") 50% 50%;
+			transition: var(--t3--faq--transition);
+			width: var(--t3--faq--button--icon-width);
+		}
+
+		&--active {
+			background-color: var(--t3--faq--button--background-color--active);
+			color: var(--t3--faq--button--color--active);
+
+			&:after {
+				background-color: var(--t3--faq--button--color--active);
+				transform: rotate(-180deg);
+			}
+		}
+	}
+	&-collapse {
+		height: 0;
+		overflow: hidden;
+		transition: var(--t3--faq--transition);
+	}
+	&-collapse--active {
+		height: auto;
+	}
+	&-body {
+		background-color: var(--t3--faq--body--background-color);
+		color: var(--t3--faq--body--color);
+		font-size: var(--t3--faq--font-size--normal);
+		padding: var(--t3--faq--padding);
+	}
+}
