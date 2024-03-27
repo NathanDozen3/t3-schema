@@ -5,7 +5,7 @@
  * Description: Add global, per-page, per-post, per-custom post type, and FAQ schema.
  * Version: 1.0.0
  * Requires at least: 6.4
- * Requires PHP: 8.3
+ * Requires PHP: 7.4
  * Author: Twelve Three Media
  * Author URI: https://www.digitalmarketingcompany.com/
  * Text Domain: t3-schema
