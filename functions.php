@@ -4,9 +4,9 @@ namespace t3\schema;
 
 /**
  * Minify an HTML string.
- * 
+ *
  * @param string $buffer
- * 
+ *
  * @return string
  */
 function minify_html( string $buffer ) : string {
@@ -31,10 +31,10 @@ function minify_html( string $buffer ) : string {
 
 /**
  * Include the partial file.
- * 
+ *
  * @param string $partial
  * @param array $args
- * 
+ *
  * @return void
  */
 function get_partial( string $partial, array $args = [] ) : void {
@@ -48,15 +48,15 @@ function get_partial( string $partial, array $args = [] ) : void {
 
 /**
  * Get the higher contrast color between white and black.
- * 
+ *
  * @param string $hexColor
  * @see https://stackoverflow.com/a/42921358
- * 
+ *
  * @return string
  */
 function get_contrast_color( string $hexColor ) : string {
 	$hexColor = ltrim( $hexColor, '#' );
-	
+
 	// hexColor RGB
 	$R1 = hexdec(substr($hexColor, 0, 2));
 	$G1 = hexdec(substr($hexColor, 2, 2));
@@ -81,9 +81,9 @@ function get_contrast_color( string $hexColor ) : string {
 
 /**
  * Given an array of block attributes, return the block styles.
- * 
+ *
  * @param array $attributes
- * 
+ *
  * @return string
  */
 function get_block_styles( array $attributes ) : string {
@@ -106,16 +106,16 @@ function get_block_styles( array $attributes ) : string {
 
 /**
  * Prepend namespace to string action callbacks.
- * 
+ *
  * @param string $hook
  * @param string|array|callable $callback
  * @param int $priority
  * @param int $args
- * 
+ *
  * @return void
  */
 function add_action( string $hook, string|array|callable $callback, int $priority = 10, int $args = 1 ) : void {
-	if( 
+	if(
 		is_string( $callback ) &&
 		! str_contains( $callback, __NAMESPACE__ ) &&
 		function_exists( __NAMESPACE__ . '\\' . $callback )
@@ -130,16 +130,16 @@ function add_action( string $hook, string|array|callable $callback, int $priorit
 
 /**
  * Prepend namespace to string filter callbacks.
- * 
+ *
  * @param string $hook
  * @param string|array|callable $callback
  * @param int $priority
  * @param int $args
- * 
+ *
  * @return void
  */
 function add_filter( string $hook, string|array|callable $callback, int $priority = 10, int $args = 1 ) : void {
-	if( 
+	if(
 		is_string( $callback ) &&
 		! str_contains( $callback, __NAMESPACE__ ) &&
 		function_exists( __NAMESPACE__ . '\\' . $callback )

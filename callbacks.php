@@ -4,7 +4,7 @@ namespace t3\schema;
 
 /**
  * Define the T3 schema capability.
- * 
+ *
  * @return void
  */
 function define_t3_schema_capability() : void {
@@ -18,7 +18,7 @@ function define_t3_schema_capability() : void {
 
 /**
  * Register the post meta to show in REST API.
- * 
+ *
  * @return void
  */
 function register_post_meta_to_show_in_rest_api() : void {
@@ -42,7 +42,7 @@ function register_post_meta_to_show_in_rest_api() : void {
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
- * 
+ *
  * @return void
  */
 function register_faq_block() : void {
@@ -52,7 +52,7 @@ function register_faq_block() : void {
 
 /**
  * Register T3 Schema settings.
- * 
+ *
  * @return void
  */
 function register_t3_schema_settings() : void {
@@ -113,7 +113,7 @@ function register_t3_schema_settings() : void {
 
 /**
  * Print a text area field.
- * 
+ *
  * @param array $args This is the description.
  *
  * @return void
@@ -131,7 +131,7 @@ function render_textarea_field( array $args ) : void {
 
 /**
  * Print a multi select field.
- * 
+ *
  * @param array $args This is the description.
  *
  * @return void
@@ -144,8 +144,8 @@ function render_multi_select_field( array $args ) : void {
 	$options = get_option( 't3_schema' );
 	$post_types = get_post_types( [ 'public' => true ] );
 	unset( $post_types[ 'attachment' ] );
-	get_partial( 'multi-select', [ 
-		'post_types' => $post_types, 
+	get_partial( 'multi-select', [
+		'post_types' => $post_types,
 		'options' => $options[ 't3-schema-post-types' ] ?? [],
 	] );
 }
@@ -153,7 +153,7 @@ function render_multi_select_field( array $args ) : void {
 
 /**
  * Add submenu page to general options menu.
- * 
+ *
  * @return void
  */
 function add_submenu_to_general_options() : void {
@@ -161,12 +161,12 @@ function add_submenu_to_general_options() : void {
 		return;
 	}
 
-	add_submenu_page( 
+	add_submenu_page(
 		'options-general.php',
 		'T3 Schema',
 		'T3 Schema',
 		T3_MANAGE_SCHEMA_CAPABILITY,
-		't3-schema', 
+		't3-schema',
 		__NAMESPACE__ . '\render_options_page'
 	);
 }
@@ -174,7 +174,7 @@ function add_submenu_to_general_options() : void {
 
 /**
  * Print the T3 Schema options page.
- * 
+ *
  * @return void
  */
 function render_options_page() : void {
@@ -188,9 +188,9 @@ function render_options_page() : void {
 
 /**
  * Add settings link to plugins administration page.
- * 
+ *
  * @param array $links An array of links for the plugin.
- * 
+ *
  * @return array
  */
 function add_settings_link_to_plugins_administration_page( array $links ) : array {
@@ -211,7 +211,7 @@ function add_settings_link_to_plugins_administration_page( array $links ) : arra
 
 /**
  * Add meta boxes.
- * 
+ *
  * @return void
  */
 function add_meta_boxes() : void {
@@ -228,16 +228,16 @@ function add_meta_boxes() : void {
 			'T3 Meta Data',
 			__NAMESPACE__ . '\meta_box',
 			$post_type,
-			'side'
+			'normal'
 		);
-	
+
 	}
 }
 
 
 /**
  * Print page meta boxes.
- * 
+ *
  * @return void
  */
 function meta_box( \WP_Post $post ) : void {
@@ -252,9 +252,9 @@ function meta_box( \WP_Post $post ) : void {
 
 /**
  * Enqueue T3 Schema post editor assets.
- * 
+ *
  * @param string $hook
- * 
+ *
  * @return void
  */
 function enqueue_t3_schema_post_editor_assets( string $hook ) : void {
@@ -274,11 +274,11 @@ function enqueue_t3_schema_post_editor_assets( string $hook ) : void {
 
 /**
  * Save T3 post meta data.
- * 
+ *
  * @param int $post_id Post ID.
  * @param WP_Post $post Post object.
  * @param bool $update Whether this is an existing post being updated.
- * 
+ *
  * @return void
  */
 function save_t3_post_meta_data( int $post_id, \WP_Post $post, bool $update ) : void {
@@ -289,12 +289,12 @@ function save_t3_post_meta_data( int $post_id, \WP_Post $post, bool $update ) : 
 
 /**
  * Save a meta value.
- * 
+ *
  * @param string $args Meta key.
  * @param int $post_id Post ID.
  * @param WP_Post $post Post object.
  * @param bool $update Whether this is an existing post being updated.
- * 
+ *
  * @return void
  */
 function save_t3_meta_data( string $meta_key, int $post_id, \WP_Post $post, bool $update ) : void {
@@ -306,29 +306,29 @@ function save_t3_meta_data( string $meta_key, int $post_id, \WP_Post $post, bool
 
 	/* Verify the nonce. */
 	if (
-		! isset( $_POST[ 't3-schema-nonce' ] ) || 
+		! isset( $_POST[ 't3-schema-nonce' ] ) ||
 		! wp_verify_nonce( $_POST[ 't3-schema-nonce' ], basename( __FILE__ ) )
 	) {
 		return;
 	}
-  
+
 	/* Get the post type object. */
 	$post_type = get_post_type_object( $post->post_type );
-  
+
 	/* Check if the current user has permission to edit the post. */
 	if ( !current_user_can( $post_type->cap->edit_post, $post_id ) ) {
 		return;
 	}
-  
+
 	/* Get the posted data and sanitize it. */
 	$new_meta_value = ( isset( $_POST[ $meta_key ] ) ? $_POST[ $meta_key ] : '' );
 	if( ! current_user_can( T3_MANAGE_SCHEMA_CAPABILITY ) ) {
 		$new_meta_value = sanitize_textarea_field( $new_meta_value );
 	}
-  
+
 	/* Get the meta value of the custom field key. */
 	$meta_value = get_post_meta( $post_id, $meta_key, true );
-  
+
 	/* If a new meta value was added and there was no previous value, add it. */
 	if( $new_meta_value && '' == $meta_value ) {
 		add_post_meta( $post_id, $meta_key, $new_meta_value, true );
@@ -336,7 +336,7 @@ function save_t3_meta_data( string $meta_key, int $post_id, \WP_Post $post, bool
 	/* If the new meta value does not match the old value, update it. */
 	elseif( $new_meta_value && $new_meta_value != $meta_value ) {
 		update_post_meta( $post_id, $meta_key, $new_meta_value );
-	}  
+	}
 	/* If there is no new meta value but an old value exists, delete it. */
 	elseif( '' == $new_meta_value && $meta_value ) {
 		delete_post_meta( $post_id, $meta_key, $meta_value );
@@ -346,7 +346,7 @@ function save_t3_meta_data( string $meta_key, int $post_id, \WP_Post $post, bool
 
 /**
  * Print T3 schema.
- * 
+ *
  * @return void
  */
 function print_t3_schema() : void {

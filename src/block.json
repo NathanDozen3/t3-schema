@@ -13,18 +13,18 @@
 		"multiple": false
 	},
 	"attributes": {
-		"button__background_color": { 
+		"button__background_color": {
 			"type": "string",
 			"default": "#86b7fe"
 		},
-		"button__background_color__active": { 
+		"button__background_color__active": {
 			"type": "string"
 		},
-		"body__color": { 
+		"body__color": {
 			"type": "string",
 			"default": "#000000"
 		},
-		"body__background_color": { 
+		"body__background_color": {
 			"type": "string",
 			"default": "#ffffff"
 		}

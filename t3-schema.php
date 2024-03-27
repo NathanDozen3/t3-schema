@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: T3 Schema
- * Plugin URI: 
+ * Plugin URI:
  * Description: Add global, per-page, per-post, per-custom post type, and FAQ schema.
  * Version: 1.0.0
  * Requires at least: 6.4

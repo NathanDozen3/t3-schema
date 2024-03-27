@@ -5,7 +5,7 @@
 		<?php foreach( (array) json_decode( get_post_meta( get_the_ID(), 't3-faq', true ) ) as $key => $faq ) : ?>
 			<div class="wp-block-t3-faq-item">
 				<h3 class="wp-block-t3-faq-header" id="heading-<?php echo $key; ?>">
-					<button 
+					<button
 						class="wp-block-t3-faq-button <?php if( $key === 0 ) echo 'wp-block-t3-faq-button--active'; ?>"
 						type="button"
 						data-t3-toggle="collapse"

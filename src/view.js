@@ -21,7 +21,7 @@
  */
 
 (function(){
-	
+
 	const T3_FAQ_ITEM_CLASS = 'wp-block-t3-faq-item';
 	const T3_FAQ_BUTTON_CLASS = 'wp-block-t3-faq-button';
 	const T3_FAQ_COLLAPSE_CLASS = 'wp-block-t3-faq-collapse';
@@ -46,7 +46,7 @@
 
 		button.classList.remove(T3_FAQ_BUTTON_ACTIVE_CLASS);
 		button.setAttribute('aria-expanded',false);
-		
+
 		collapse.classList.remove(T3_FAQ_COLLAPSE_ACTIVE_CLASS);
 		collapse.style.height = 0;
 	}
@@ -68,7 +68,7 @@
 	const onPageLoad = function() {
 		let active = document.querySelector(T3_FAQ_COLLAPSE_ACTIVE_SELECTOR);
 		if(active){ active.style.height = px(active.offsetHeight); }
-	
+
 		var buttons = document.querySelectorAll(T3_FAQ_DATA_SELECTOR);
 		buttons.forEach(function(button){
 			button.addEventListener('click',function(){
